@@ -8,19 +8,14 @@ function Form() {
   const [easeOfUse, setEaseOfUse] = useState(0);
   const [features, setFeatures] = useState(0);
   const [comments, setComments] = useState('');
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFormSubmitted(true);
+  };
 
-    console.log('Form submitted:', {
-      name,
-      email,
-      phoneNumber,
-      overallExperience,
-      easeOfUse,
-      features,
-      comments
-    });
+  const reset = () => {
     // Reset the form fields after submission
     setName('');
     setEmail('');
@@ -29,9 +24,26 @@ function Form() {
     setEaseOfUse(0);
     setFeatures(0);
     setComments('');
-  };
+  }
 
   return (
+    <div>{
+      formSubmitted === true ?
+        <div className="view-form">
+          <h2>Submitted Form</h2>
+          <p><strong>Name:</strong> {name}</p>
+          <p><strong>Email:</strong> {email}</p>
+          <p><strong>Phone Number:</strong> {phoneNumber}</p>
+          <p><strong>Overall Experience:</strong> {overallExperience}</p>
+          <p><strong>Ease of Use:</strong> {easeOfUse}</p>
+          <p><strong>Features:</strong> {features}</p>
+          <p><strong>Comments:</strong> {comments}</p>
+          <button onClick={() => {
+            reset();
+            setFormSubmitted(false);
+
+          }}>Return</button>
+        </div> :
     <div className="container">
       <h2>Feedback Form</h2>
       <form onSubmit={handleSubmit}>
@@ -105,7 +117,8 @@ function Form() {
 
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </div>}
+  </div>
   );
 }
 
