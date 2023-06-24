@@ -46,6 +46,7 @@ function Form() {
         </div> :
     <div className="container">
       <h2>Feedback Form</h2>
+      <hr />
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
